@@ -1,0 +1,12 @@
+{
+searchMarkets(filter:{
+  name: {
+    eq:"Wobblers"
+  }
+}) {
+    items{
+        id,
+        name
+    }
+  }
+}
