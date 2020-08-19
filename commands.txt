@@ -6,7 +6,6 @@ amplify add api
 (if you have hosting category added) and provision it in the cloud
 
 
-sk_test_51HD8KaLFtcWkU2NXmBObetcFmuxrGMmWQNyBlGr2bCzdvKcdVc84rKiMek5B9N85TKFBEO6psfiBxYZlgP7d0SKN00OpqHGNAj
 
 
 
