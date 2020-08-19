@@ -18,19 +18,20 @@ class HomePage extends React.Component {
     handleSearch = async (event) => {
         try {
             event.preventDefault();
+
             console.log(" searchTerm:", this.state.searchTerm);
             this.setState({isSearching: true});
             const result = await API.graphql(graphqlOperation(searchMarkets, {
                 filter: {
-                       name: {matchPhrasePrefix: this.state.searchTerm}
+                    name: {matchPhrasePrefix: this.state.searchTerm}
                 },
-                sort:{
+                sort: {
                     field: "name",
-                    direction:"desc"
+                    direction: "desc"
                 }
             }));
             console.log(" result:", result.data.searchMarkets.items);
-            this.setState({searchResult: result.data.searchMarkets.items, isSearching:false})
+            this.setState({searchResult: result.data.searchMarkets.items, isSearching: false})
         } catch (error) {
             console.error("Error in Search Markets", error);
         }

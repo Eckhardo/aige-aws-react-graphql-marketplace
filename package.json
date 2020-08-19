@@ -19,6 +19,11 @@
     "react-scripts": "3.4.1",
     "react-stripe-checkout": "^2.6.3"
   },
+
+  "devDependencies": {
+    "aws-sdk": "^2.727.1"
+
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

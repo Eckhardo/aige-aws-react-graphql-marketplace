@@ -38,12 +38,19 @@ export const listMarkets = /* GraphQL */ `
       items {
         id
         name
-        products {
-          items {
-            id
+      products {
+        items {
+          id
+          description
+          price
+          shipped
+          owner
+          file {
+            key
           }
-          nextToken
-        }
+         }
+        nextToken
+      }
         tags
         owner
         createdAt

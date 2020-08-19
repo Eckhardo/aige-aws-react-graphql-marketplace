@@ -16,6 +16,10 @@ class Product extends React.Component {
         description: "",
         shipped: false
     };
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('Product componentDidUpdate', prevState);
+    }
+
 
     handleUpdateProduct = async (productId) => {
         this.setState({updateProductDialog: false});
@@ -34,17 +38,15 @@ class Product extends React.Component {
                     type: 'success'
                 }
             )
-            setTimeout(() => window.location.reload(), 4000);
-        } catch (e) {
+         } catch (e) {
             console.error(e);
         }
     }
     handleDelete = async (productId) => {
-        this.setState({deleteProductDialog: true})
-        const input = {
-            id: productId
-        }
+
         try {
+            this.setState({deleteProductDialog: false})
+            const input = {id: productId}
             const result = await API.graphql(graphqlOperation(deleteProduct, {input}));
             console.log(result);
             Notification({
@@ -67,7 +69,7 @@ class Product extends React.Component {
                 {({user}) => {
                     const isProductOwner = user && user.attributes.sub === product.owner;
                     return (<div className="card-container">
-                            <ProductCard product={product} isProductOwner={isProductOwner} />
+                            <ProductCard product={product} user={user} isProductOwner={isProductOwner} />
                             {/* Update and Delete*/}
                             <div className="text-center">
                                 {isProductOwner && (

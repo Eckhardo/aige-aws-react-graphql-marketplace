@@ -1,0 +1,7 @@
+amplify function build
+amplify push
+amplify function remove
+
+add to package.jsom:
+ y
+

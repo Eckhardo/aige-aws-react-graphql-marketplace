@@ -17,6 +17,7 @@ class NewMarket extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("NewMarket did Update", this.props);
     }
+
     // handler
     handleAddMarket = async (user) => {
         this.setState({addMarketDialog: false});

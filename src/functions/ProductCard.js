@@ -5,7 +5,7 @@ import {convertCentsToEuros} from "../utils";
 import PayButton from "../components/PayButton";
 
 const ProductCard  = (props) => {
-
+console.log('ProductCard:', props.product);
 return (
 
     <Card bodyStyle={{padding: 0, minWidth: '200px'}}>
@@ -22,7 +22,7 @@ return (
                                  €{convertCentsToEuros(props.product.price)}
                              </span>
                 {props.isProductOwner && (
-                    <PayButton/>
+                    <PayButton product={props.product} user={props.user}/>
                 )}
             </div>
         </div>

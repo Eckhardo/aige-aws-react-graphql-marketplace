@@ -23,8 +23,9 @@ class NewProduct extends React.Component {
     state = {...initialState};
 
     handleAddPhoto = async () => {
-
-        console.log(this.state);
+        const userName = Auth.user.getUsername();
+        console.log("userName:", userName);
+        console.log("state: ",this.state);
         try {
             this.setState({isUploading: true})
             const visibility = "public";
@@ -51,11 +52,11 @@ class NewProduct extends React.Component {
                 shipped: this.state.shipped,
                 file
             }
-            const result = API.graphql(graphqlOperation(createProduct, {input}));
-            console.log(' New Market Uploaded', result);
+            const result = await API.graphql(graphqlOperation(createProduct, {input}));
+            console.log(' New Product Uploaded', result);
             Notification({
                 title: "success",
-                message: "Product successfully created",
+                message: `Product successfully created: ${JSON.stringify(result)}`,
                 type: "success"
             })
             this.setState({isUploading: false})
