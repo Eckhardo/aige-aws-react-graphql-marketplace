@@ -16,7 +16,7 @@ const MarketCard = (props) => {
                          {props.market.name}
           </Link>
           <span style={{color: '#FF9900'}}>
-                         {props.market.products.items ? props.market.products.items.length: ""}
+                         {props.market.products.items ? props.market.products.items.length : ""}
           </span>
           </span>
                 <div style={{color: '#FF6655'}}>

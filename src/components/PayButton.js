@@ -9,7 +9,6 @@ import {getUser} from "../graphql/queries";
 const PayButton = ({product, user}) => {
 
 
-
     const config = {
         currency: "EUR",
         publishableAPIKey: "pk_test_51HD8KaLFtcWkU2NXNytQ1iLs2wXqZUhhnWlkwhP81yPC4VoyKzLEcOGrzghITOSMmjqB3bh9jt238ctdraDsLP2j00IzEbOZz6"

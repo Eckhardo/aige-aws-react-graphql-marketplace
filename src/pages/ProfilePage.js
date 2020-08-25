@@ -84,12 +84,13 @@ class ProfilePage extends React.Component {
     componentDidMount() {
         console.log("ProfilePage mounts.....")
         if (this.props.user) {
-    this.getUserOrders(this.props.user.attributes.sub);
+            this.getUserOrders(this.props.user.attributes.sub);
 
 
         }
 
     }
+
     componentWillUnmount() {
         console.log("ProfilePage unmounts.....")
     }

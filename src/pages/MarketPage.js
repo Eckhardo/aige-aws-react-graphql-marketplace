@@ -91,6 +91,7 @@ class MarketPage extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('[MarketPage] componentDidUpdate', prevState);
     }
+
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         return true;
     }

@@ -4,7 +4,7 @@ import {graphqlOperation} from 'aws-amplify'
 import {listMarkets} from "../graphql/queries";
 import {onCreateMarket} from "../graphql/subscriptions";
 import Error from "./Error";
-import {Loading, Icon} from "element-react";
+import {Icon, Loading} from "element-react";
 import MarketCard from "../functions/MarketCard";
 //  Use Connect Component to use grapql in a function. Otherwise it must be integrated into a component
 // life cycle hook.
@@ -28,17 +28,17 @@ const MarketList = ({searchResults}) => {
                 return (<Error errors={errors}/>)
             }
             if (loading && !marketList) return <Loading fullscreen={true}/>
-            const markets= searchResults.length >0 ? searchResults: marketList.items;
+            const markets = searchResults.length > 0 ? searchResults : marketList.items;
             return (
                 <>
-                    {searchResults.length>0 ? (
-                        <h2 className= "text-green">
-                            <Icon type="success" className="icon" name="check"/>
-                            {searchResults.length} Results
-                        </h2>
-                        ):
+                    {searchResults.length > 0 ? (
+                            <h2 className="text-green">
+                                <Icon type="success" className="icon" name="check"/>
+                                {searchResults.length} Results
+                            </h2>
+                        ) :
 
-                        ( <h2 className="header">Markets</h2>)
+                        (<h2 className="header">Markets</h2>)
                     }
                     {markets.map(market => {
                         return (

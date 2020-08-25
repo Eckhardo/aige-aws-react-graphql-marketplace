@@ -4,8 +4,8 @@ import {AmplifyTheme, Authenticator} from 'aws-amplify-react';
 import {API, Auth, graphqlOperation, Hub} from 'aws-amplify';
 import {getUser} from "./graphql/queries";
 import {registerUser} from "./graphql/mutations";
-import {Router, Route} from 'react-router-dom';
-import { createBrowserHistory } from "history";
+import {Route, Router} from 'react-router-dom';
+import {createBrowserHistory} from "history";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import MarketPage from "./pages/MarketPage";
@@ -17,10 +17,10 @@ export const UserContext = React.createContext();
 class App extends React.Component {
     state = {
         user: null,
-        userAttributes:null
+        userAttributes: null
     };
 
-    componentDidUpdate =  (prevProps, prevState, snapshot) => {
+    componentDidUpdate = (prevProps, prevState, snapshot) => {
         console.log("App  did Update now", this.state);
 
 
@@ -36,7 +36,7 @@ class App extends React.Component {
             console.log('A new auth event has happened: ', data.payload.data.username + ' has ' + data.payload.event);
         })
 
-     }
+    }
 
     componentWillUnmount() {
         console.log("App anmounts.....")
@@ -59,7 +59,7 @@ class App extends React.Component {
 
                 }
                 console.log("registerInput: ", registerInput);
-                const newUser = await API.graphql(graphqlOperation(registerUser, {input:registerInput}));
+                const newUser = await API.graphql(graphqlOperation(registerUser, {input: registerInput}));
                 console.log("newUser: ", newUser);
             } catch (e) {
                 console.error('Error registering the user', e);
@@ -72,17 +72,17 @@ class App extends React.Component {
     getUserData = async () => {
         let userData = await Auth.currentAuthenticatedUser();
         userData ? this.setState({user: userData},
-            () => this.getUserAttributes(this.state.user) ) : this.setState({user:null});
+            () => this.getUserAttributes(this.state.user)) : this.setState({user: null});
 
     }
-    getUserAttributes = async (userData)  =>{
+    getUserAttributes = async (userData) => {
         const attributesArr = await Auth.userAttributes(userData);
 
-        console.log("attributes:" , {attributesArr});
+        console.log("attributes:", {attributesArr});
         // convert array to an object
         const obj = Object.assign({}, attributesArr);
-        this.setState({userAttributes:obj});
-        console.log("attributes2:" , this.state.userAttributes);
+        this.setState({userAttributes: obj});
+        console.log("attributes2:", this.state.userAttributes);
     }
     onAuthEvent = payload => {
         switch (payload.event) {
@@ -109,7 +109,7 @@ class App extends React.Component {
 
     render() {
 
-        const {user,userAttributes} = this.state;
+        const {user, userAttributes} = this.state;
         let displayedJsx = null;
         if (!user) {
             displayedJsx = (
@@ -129,7 +129,7 @@ class App extends React.Component {
                                 <Route exact path="/" component={HomePage}/>
                                 {/* if ProfilePage mounts, transport the user*/}
                                 <Route path="/profile"
-                                       component={ () => <ProfilePage
+                                       component={() => <ProfilePage
                                            user={user}
                                            userAttributes={userAttributes}/>}
                                 />

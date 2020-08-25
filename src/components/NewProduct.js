@@ -2,10 +2,9 @@ import React from "react";
 import {API, Auth, graphqlOperation, Storage} from 'aws-amplify';
 import {createProduct} from "../graphql/mutations";
 import aws_exports from './../aws-exports';
-import {Progress,Button, Form, Input, Radio,Notification} from "element-react";
+import {Button, Form, Input, Notification, Progress, Radio} from "element-react";
 import {PhotoPicker} from "aws-amplify-react";
 import {convertEuroToCents} from "../utils";
-
 
 
 const initialState = {
@@ -15,7 +14,7 @@ const initialState = {
     image: "",
     imagePreview: "",
     isUploading: false,
-    percentageUploaded:0
+    percentageUploaded: 0
 };
 
 class NewProduct extends React.Component {
@@ -25,7 +24,7 @@ class NewProduct extends React.Component {
     handleAddPhoto = async () => {
         const userName = Auth.user.getUsername();
         console.log("userName:", userName);
-        console.log("state: ",this.state);
+        console.log("state: ", this.state);
         try {
             this.setState({isUploading: true})
             const visibility = "public";
@@ -36,8 +35,8 @@ class NewProduct extends React.Component {
                     contentType: this.state.image.type,
                     progressCallback: progress => {
                         console.log(`Uploaded: ${progress.loaded}/${progress.total}`);
-                        const percentageUploaded= Math.round((progress.loaded/progress.total) * 100);
-                        this.setState({ percentageUploaded:percentageUploaded});
+                        const percentageUploaded = Math.round((progress.loaded / progress.total) * 100);
+                        this.setState({percentageUploaded: percentageUploaded});
                     }
                 });
             const file = {
@@ -68,7 +67,7 @@ class NewProduct extends React.Component {
 
     render() {
 
-        const {image, imagePreview, shipped,price, description, isUploading,percentageUploaded} = this.state;
+        const {image, imagePreview, shipped, price, description, isUploading, percentageUploaded} = this.state;
         return (
 
             <div className="flex-center">
@@ -111,12 +110,12 @@ class NewProduct extends React.Component {
                                  src={imagePreview}
                                  alt="Product Preview"/>
                         )}
-                        {percentageUploaded>0 &&(
+                        {percentageUploaded > 0 && (
                             <Progress
-                            type="circle"
-                            status="success"
-                            className="progress"
-                            percentage={percentageUploaded}/>
+                                type="circle"
+                                status="success"
+                                className="progress"
+                                percentage={percentageUploaded}/>
                         )}
                         <PhotoPicker title="Product Image"
                                      preview="hidden"

@@ -14,6 +14,7 @@ class NewMarket extends React.Component {
         options: [],
         addMarketDialog: false
     };
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("NewMarket did Update", this.props);
     }
