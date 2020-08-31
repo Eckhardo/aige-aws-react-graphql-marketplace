@@ -101,7 +101,7 @@ class App extends React.Component {
     }
     handleSignOut = async () => {
         try {
-            Auth.signOut();
+          await   Auth.signOut();
         } catch (error) {
             console.error('TError signing out user', error);
         }
@@ -110,7 +110,7 @@ class App extends React.Component {
     render() {
 
         const {user, userAttributes} = this.state;
-        let displayedJsx = null;
+        let displayedJsx;
         if (!user) {
             displayedJsx = (
                 <Authenticator theme={theme}/>
